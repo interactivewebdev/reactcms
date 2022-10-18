@@ -23,7 +23,8 @@ import Icons from "views/Icons.js";
 import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
-import GymList from "views/GymList";
+import GymList from "./views/GymList";
+import AddGym from "./views/AddGym";
 
 const dashboardRoutes = [
   // {
@@ -40,6 +41,7 @@ const dashboardRoutes = [
     icon: "nc-icon nc-chart-pie-35",
     component: Dashboard,
     layout: "/admin",
+    display: true,
   },
   {
     path: "/gym",
@@ -47,6 +49,15 @@ const dashboardRoutes = [
     icon: "nc-icon nc-circle-09",
     component: GymList,
     layout: "/admin",
+    display: true,
+  },
+  {
+    path: "/addNewGym",
+    name: "Add New Gym",
+    icon: "nc-icon nc-bell-55",
+    component: AddGym,
+    layout: "/admin",
+    display: false,
   },
   // {
   //   path: "/user",

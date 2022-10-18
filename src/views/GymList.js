@@ -14,6 +14,8 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import routes from "../routes";
 
 const BASE_URL = "http://13.127.203.70:8093/gym/getall";
 const headers = {
@@ -21,8 +23,17 @@ const headers = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "*",
 };
+
 function GymList() {
   const [gymList, setGymList] = useState([]);
+  const history = useHistory();
+
+  const gotoAddPage = () => {
+    const addgym = routes.filter((item) => {
+      return item.path == "/addNewGym";
+    });
+    history.push(addgym[0].layout + addgym[0].path);
+  };
 
   const getList = () => {
     var config = {
@@ -65,6 +76,14 @@ function GymList() {
               <Card.Header>
                 <Card.Title as="h4">GYMs</Card.Title>
                 <p className="card-category">List of gymnassium</p>
+                <div className="d-inline float-end">
+                  <button
+                    className="btn btn-primary btn-xs"
+                    onClick={gotoAddPage}
+                  >
+                    Add New
+                  </button>
+                </div>
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 {gymList.length > 0 && (
@@ -82,7 +101,7 @@ function GymList() {
                   </Table>
                 )}
                 {gymList.length == 0 && (
-                  <div className="px-5">No gyms found in our records.</div>
+                  <div className="px-5">No gyms are found in our records.</div>
                 )}
                 ;
               </Card.Body>
